@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.fadlurahmanf.monorepo.core_crypto"
+    namespace = "com.example.core_shared"
     compileSdk = 34
 
     defaultConfig {
@@ -67,12 +67,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation(project(":core_shared"))
-
-    implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
-
-    // ed25519
-    implementation(libs.bcprov.jdk15on)
 }

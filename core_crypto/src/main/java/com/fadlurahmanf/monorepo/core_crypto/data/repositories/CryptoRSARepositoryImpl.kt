@@ -14,7 +14,8 @@ import java.security.spec.X509EncodedKeySpec
 import javax.crypto.Cipher
 
 
-class CryptoRSARSARepositoryImpl : BaseCrypto(), CryptoRSARepository {
+@Deprecated("use CryptoRSAV2RepositoryImpl")
+class CryptoRSARepositoryImpl : BaseCrypto(), CryptoRSARepository {
     override fun generateKey(): CryptoKey {
         val keyGen = KeyPairGenerator.getInstance("RSA")
         keyGen.initialize(2048)

@@ -5,6 +5,7 @@ import com.fadlurahmanf.monorepo.core_crypto.data.model.CryptoKey
 import java.security.PrivateKey
 import java.security.PublicKey
 
+@Deprecated("use CryptoRSAV2Repository")
 interface CryptoRSARepository {
     fun generateKey(): CryptoKey
     fun loadPublicKey(encodedPublicKey: String): PublicKey

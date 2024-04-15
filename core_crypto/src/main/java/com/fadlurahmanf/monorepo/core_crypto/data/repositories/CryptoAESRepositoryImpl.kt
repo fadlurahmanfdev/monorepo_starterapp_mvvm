@@ -1,13 +1,14 @@
 package com.fadlurahmanf.monorepo.core_crypto.data.repositories
 
 import com.fadlurahmanf.monorepo.core_crypto.data.enums.PaddingScheme
-import com.fadlurahmanf.monorepo.core_crypto.others.CryptoException
 import com.fadlurahmanf.monorepo.core_crypto.others.BaseCrypto
+import com.fadlurahmanf.monorepo.core_crypto.others.CryptoException
 import java.lang.Exception
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
+@Deprecated("use CryptoAESV2RepositoryImpl")
 class CryptoAESRepositoryImpl : BaseCrypto(), CryptoAESRepository {
     override fun generateKey(): String {
         val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')

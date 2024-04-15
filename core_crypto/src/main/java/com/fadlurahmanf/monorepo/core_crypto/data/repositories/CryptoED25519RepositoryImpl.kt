@@ -1,9 +1,7 @@
 package com.fadlurahmanf.monorepo.core_crypto.data.repositories
 
-import android.util.Log
-import com.example.core_shared.CoreSharedConstant
 import com.fadlurahmanf.monorepo.core_crypto.data.model.CryptoKey
-import com.fadlurahmanf.monorepo.core_crypto.others.BaseCryptoV2
+import com.fadlurahmanf.monorepo.core_crypto.others.BaseCrypto
 import org.bouncycastle.crypto.generators.Ed25519KeyPairGenerator
 import org.bouncycastle.crypto.params.Ed25519KeyGenerationParameters
 import org.bouncycastle.crypto.params.Ed25519PrivateKeyParameters
@@ -11,7 +9,7 @@ import org.bouncycastle.crypto.params.Ed25519PublicKeyParameters
 import org.bouncycastle.crypto.signers.Ed25519Signer
 import java.security.SecureRandom
 
-class CryptoED25119RepositoryImpl : BaseCryptoV2(), CryptoED25119Repository {
+class CryptoED25519RepositoryImpl : BaseCrypto(), CryptoED25519Repository {
     override fun generateKey(): CryptoKey {
         val secureRandom = SecureRandom()
         val keyPairGenerator = Ed25519KeyPairGenerator()
@@ -27,13 +25,13 @@ class CryptoED25119RepositoryImpl : BaseCryptoV2(), CryptoED25119Repository {
 
     override fun generateSignature(plainText: String, encodedPrivateKey: String): String? {
         return try {
+            val privateKey = Ed25519PrivateKeyParameters(decode(encodedPrivateKey), 0)
             val signer = Ed25519Signer()
-            val privateKey = Ed25519PrivateKeyParameters(decode(encodedPrivateKey))
             signer.init(true, privateKey)
             signer.update(plainText.toByteArray(), 0, plainText.length)
-            encode(signer.generateSignature())
+            val signature = signer.generateSignature()
+            encode(signature)
         } catch (e: Throwable) {
-            Log.e(CoreSharedConstant.LOGGER_TAG, "failed generateSignature: ${e.message}")
             null
         }
     }

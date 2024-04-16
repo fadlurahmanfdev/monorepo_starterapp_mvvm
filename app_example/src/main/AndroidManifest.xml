@@ -3,6 +3,9 @@
 
     <application>
         <activity
+            android:name=".presentation.features.notification.ExampleNotificationActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.features.crypto.ExampleCryptoActivity"
             android:exported="false" />
         <activity

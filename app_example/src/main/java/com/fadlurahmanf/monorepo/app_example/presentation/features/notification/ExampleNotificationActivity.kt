@@ -1,18 +1,19 @@
-package com.fadlurahmanf.monorepo.app_example.presentation.features
+package com.fadlurahmanf.monorepo.app_example.presentation.features.notification
 
-import android.content.Intent
 import android.os.Bundle
 import com.fadlurahmanf.monorepo.app_example.R
 import com.fadlurahmanf.monorepo.app_example.data.dto.FeatureModel
-import com.fadlurahmanf.monorepo.app_example.databinding.ActivityListFeatureBinding
+import com.fadlurahmanf.monorepo.app_example.databinding.ActivityExampleNotificationBinding
 import com.fadlurahmanf.monorepo.app_example.presentation.BaseExampleActivity
-import com.fadlurahmanf.monorepo.app_example.presentation.features.crypto.ExampleCryptoActivity
-import com.fadlurahmanf.monorepo.app_example.presentation.features.notification.ExampleNotificationActivity
 import com.fadlurahmanf.monorepo.app_example.presentation.utilities.ListExampleAdapter
+import javax.inject.Inject
 
-class ListFeatureActivity :
-    BaseExampleActivity<ActivityListFeatureBinding>(ActivityListFeatureBinding::inflate),
+class ExampleNotificationActivity :
+    BaseExampleActivity<ActivityExampleNotificationBinding>(ActivityExampleNotificationBinding::inflate),
     ListExampleAdapter.Callback {
+    @Inject
+    lateinit var viewModel: ExampleNotificationViewModel
+
     override fun onBaseExampleInjectActivity() {
         component.inject(this)
     }
@@ -20,15 +21,9 @@ class ListFeatureActivity :
     private val features: List<FeatureModel> = listOf<FeatureModel>(
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
-            title = "Crypto",
-            desc = "Feature of Crypto",
-            enum = "CRYPTO"
-        ),
-        FeatureModel(
-            featureIcon = R.drawable.baseline_developer_mode_24,
-            title = "Notification",
-            desc = "Feature of Notification",
-            enum = "NOTIFICATION"
+            title = "Show Notification",
+            desc = "Show Notification",
+            enum = "SHOW_NOTIFICATION"
         ),
     )
 
@@ -47,13 +42,8 @@ class ListFeatureActivity :
 
     override fun onClicked(item: FeatureModel) {
         when (item.enum) {
-            "CRYPTO" -> {
-                val intent = Intent(this, ExampleCryptoActivity::class.java)
-                startActivity(intent)
-            }
-            "NOTIFICATION" -> {
-                val intent = Intent(this, ExampleNotificationActivity::class.java)
-                startActivity(intent)
+            "SHOW_NOTIFICATION" -> {
+                viewModel.showNotification(this)
             }
         }
     }

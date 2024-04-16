@@ -2,8 +2,8 @@ package com.fadlurahmanf.monorepo.app_example.presentation
 
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
-import com.fadlurahmanf.monorepo.app_example.others.di.AppExampleComponent
-import com.fadlurahmanf.monorepo.app_example.others.di.AppExampleProvider
+import com.fadlurahmanf.monorepo.app_example.AppExampleComponent
+import com.fadlurahmanf.monorepo.app_example.AppExampleProvider
 import com.fadlurahmanf.monorepo.app_shared.activity.BaseActivity
 import com.fadlurahmanf.monorepo.app_shared.activity.InflateActivity
 

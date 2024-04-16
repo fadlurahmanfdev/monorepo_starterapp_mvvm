@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app_config" />
             <option value="$PROJECT_DIR$/app_example" />
+            <option value="$PROJECT_DIR$/app_notification" />
             <option value="$PROJECT_DIR$/app_shared" />
             <option value="$PROJECT_DIR$/core_crypto" />
             <option value="$PROJECT_DIR$/core_notification" />

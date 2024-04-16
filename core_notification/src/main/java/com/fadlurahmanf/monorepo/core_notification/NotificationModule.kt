@@ -1,4 +1,4 @@
-package com.fadlurahmanf.monorepo.core_notification.others.di
+package com.fadlurahmanf.monorepo.core_notification
 
 import com.fadlurahmanf.monorepo.core_notification.data.repositories.NotificationRepository
 import com.fadlurahmanf.monorepo.core_notification.data.repositories.NotificationRepositoryImpl

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.core_shared"
+    namespace = "com.fadlurahmanf.monorepo.core_shared"
     compileSdk = 34
 
     defaultConfig {

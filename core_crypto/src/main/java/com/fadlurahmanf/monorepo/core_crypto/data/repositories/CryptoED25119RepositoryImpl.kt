@@ -1,7 +1,7 @@
 package com.fadlurahmanf.monorepo.core_crypto.data.repositories
 
 import android.util.Log
-import com.example.core_shared.CoreSharedConstant
+import com.fadlurahmanf.monorepo.core_shared.CoreSharedConstant
 import com.fadlurahmanf.monorepo.core_crypto.data.model.CryptoKey
 import com.fadlurahmanf.monorepo.core_crypto.others.BaseCryptoV2
 import org.bouncycastle.crypto.generators.Ed25519KeyPairGenerator

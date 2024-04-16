@@ -23,8 +23,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.core_notification.data.dto.model.ItemGroupedNotificationModel
-import com.example.core_shared.CoreSharedConstant
-import com.fadlurahmanf.starterappmvvm.core.notification.others.BaseNotificationService
+import com.fadlurahmanf.monorepo.core_shared.CoreSharedConstant
+import com.example.core_notification.others.BaseNotificationService
 import javax.inject.Inject
 
 class NotificationRepositoryImpl @Inject constructor() : BaseNotificationService(),

@@ -1,14 +1,11 @@
-package com.fadlurahmanf.starterappmvvm.core.notification.others
+package com.example.core_notification.others
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.media.RingtoneManager
-import android.net.Uri
 import android.os.Build
 import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
-import com.fadlurahmanf.starterappmvvm.R
 
 abstract class BaseNotificationService {
     private lateinit var notificationManager: NotificationManager
@@ -74,20 +71,6 @@ abstract class BaseNotificationService {
             }
             getNotificationManager(context).createNotificationChannel(channel)
         }
-    }
-
-    @Deprecated(
-        "deprecated because it is hardcoded small icon",
-        replaceWith = ReplaceWith("notificationBuilderV2")
-    )
-    fun notificationBuilder(
-        context: Context,
-        channelId: String
-    ): NotificationCompat.Builder {
-        return NotificationCompat.Builder(context, channelId)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setAutoCancel(true)
-            .setSmallIcon(R.drawable.il_logo_bankmas) // TODO(DEV): Change Small Icon
     }
 
     fun notificationBuilderV2(

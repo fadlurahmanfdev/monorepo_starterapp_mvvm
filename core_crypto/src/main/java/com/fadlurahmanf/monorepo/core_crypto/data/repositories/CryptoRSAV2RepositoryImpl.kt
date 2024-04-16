@@ -1,7 +1,7 @@
 package com.fadlurahmanf.monorepo.core_crypto.data.repositories
 
 import android.util.Log
-import com.example.core_shared.CoreSharedConstant
+import com.fadlurahmanf.monorepo.core_shared.CoreSharedConstant
 import com.fadlurahmanf.monorepo.core_crypto.data.enums.RSAMethod
 import com.fadlurahmanf.monorepo.core_crypto.data.enums.RSASignatureMethod
 import com.fadlurahmanf.monorepo.core_crypto.data.model.CryptoKey

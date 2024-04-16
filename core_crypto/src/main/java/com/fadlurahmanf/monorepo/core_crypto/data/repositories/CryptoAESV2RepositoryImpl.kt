@@ -1,7 +1,7 @@
 package com.fadlurahmanf.monorepo.core_crypto.data.repositories
 
 import android.util.Log
-import com.example.core_shared.CoreSharedConstant
+import com.fadlurahmanf.monorepo.core_shared.CoreSharedConstant
 import com.fadlurahmanf.monorepo.core_crypto.data.enums.AESMethod
 import com.fadlurahmanf.monorepo.core_crypto.others.BaseCryptoV2
 import javax.crypto.Cipher

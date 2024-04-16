@@ -1,4 +1,4 @@
-package com.example.core_notification.others
+package com.fadlurahmanf.monorepo.core_notification.others
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

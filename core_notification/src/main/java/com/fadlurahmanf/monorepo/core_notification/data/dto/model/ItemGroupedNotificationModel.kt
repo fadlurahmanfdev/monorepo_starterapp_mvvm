@@ -1,4 +1,4 @@
-package com.example.core_notification.data.dto.model
+package com.fadlurahmanf.monorepo.core_notification.data.dto.model
 
 data class ItemGroupedNotificationModel(
     val id: Int,

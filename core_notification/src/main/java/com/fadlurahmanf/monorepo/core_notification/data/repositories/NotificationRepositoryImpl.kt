@@ -1,4 +1,4 @@
-package com.example.core_notification.data.repositories
+package com.fadlurahmanf.monorepo.core_notification.data.repositories
 
 import android.Manifest
 import android.app.Activity
@@ -22,9 +22,9 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.example.core_notification.data.dto.model.ItemGroupedNotificationModel
+import com.fadlurahmanf.monorepo.core_notification.data.dto.model.ItemGroupedNotificationModel
 import com.fadlurahmanf.monorepo.core_shared.CoreSharedConstant
-import com.example.core_notification.others.BaseNotificationService
+import com.fadlurahmanf.monorepo.core_notification.others.BaseNotificationService
 import javax.inject.Inject
 
 class NotificationRepositoryImpl @Inject constructor() : BaseNotificationService(),

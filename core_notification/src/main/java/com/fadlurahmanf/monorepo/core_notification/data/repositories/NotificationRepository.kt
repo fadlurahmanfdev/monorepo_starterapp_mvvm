@@ -1,4 +1,4 @@
-package com.example.core_notification.data.repositories
+package com.fadlurahmanf.monorepo.core_notification.data.repositories
 
 import android.app.Activity
 import android.app.PendingIntent
@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.annotation.DrawableRes
-import com.example.core_notification.data.dto.model.ItemGroupedNotificationModel
+import com.fadlurahmanf.monorepo.core_notification.data.dto.model.ItemGroupedNotificationModel
 
 interface NotificationRepository {
     /**

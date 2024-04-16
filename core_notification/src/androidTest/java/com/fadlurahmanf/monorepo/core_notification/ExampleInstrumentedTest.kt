@@ -1,4 +1,4 @@
-package com.example.core_notification
+package com.fadlurahmanf.monorepo.core_notification
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

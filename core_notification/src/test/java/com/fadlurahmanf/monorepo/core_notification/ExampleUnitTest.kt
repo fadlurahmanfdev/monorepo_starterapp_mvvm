@@ -1,4 +1,4 @@
-package com.example.core_notification
+package com.fadlurahmanf.monorepo.core_notification
 
 import org.junit.Test
 

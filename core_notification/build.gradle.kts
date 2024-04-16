@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.core_notification"
+    namespace = "com.fadlurahmanf.monorepo.core_notification"
     compileSdk = 34
 
     defaultConfig {

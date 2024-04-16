@@ -1,7 +1,7 @@
 package com.fadlurahmanf.monorepo.core_crypto.data.repositories
 
 import com.fadlurahmanf.monorepo.core_crypto.data.model.CryptoKey
-import com.fadlurahmanf.monorepo.core_crypto.others.BaseCrypto
+import com.fadlurahmanf.monorepo.core_crypto.others.BaseCryptoV2
 import org.bouncycastle.crypto.generators.Ed25519KeyPairGenerator
 import org.bouncycastle.crypto.params.Ed25519KeyGenerationParameters
 import org.bouncycastle.crypto.params.Ed25519PrivateKeyParameters
@@ -9,7 +9,7 @@ import org.bouncycastle.crypto.params.Ed25519PublicKeyParameters
 import org.bouncycastle.crypto.signers.Ed25519Signer
 import java.security.SecureRandom
 
-class CryptoED25519RepositoryImpl : BaseCrypto(), CryptoED25519Repository {
+class CryptoED25519RepositoryImpl : BaseCryptoV2(), CryptoED25519Repository {
     override fun generateKey(): CryptoKey {
         val secureRandom = SecureRandom()
         val keyPairGenerator = Ed25519KeyPairGenerator()

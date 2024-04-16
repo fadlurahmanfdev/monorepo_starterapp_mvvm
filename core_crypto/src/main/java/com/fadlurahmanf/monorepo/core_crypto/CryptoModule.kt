@@ -1,13 +1,9 @@
-package com.fadlurahmanf.monorepo.core_crypto.others.di
+package com.fadlurahmanf.monorepo.core_crypto
 
-import com.fadlurahmanf.monorepo.core_crypto.data.repositories.CryptoAESRepository
-import com.fadlurahmanf.monorepo.core_crypto.data.repositories.CryptoAESRepositoryImpl
 import com.fadlurahmanf.monorepo.core_crypto.data.repositories.CryptoAESV2Repository
 import com.fadlurahmanf.monorepo.core_crypto.data.repositories.CryptoAESV2RepositoryImpl
 import com.fadlurahmanf.monorepo.core_crypto.data.repositories.CryptoED25519Repository
 import com.fadlurahmanf.monorepo.core_crypto.data.repositories.CryptoED25519RepositoryImpl
-import com.fadlurahmanf.monorepo.core_crypto.data.repositories.CryptoRSARepositoryImpl
-import com.fadlurahmanf.monorepo.core_crypto.data.repositories.CryptoRSARepository
 import com.fadlurahmanf.monorepo.core_crypto.data.repositories.CryptoRSAV2Repository
 import com.fadlurahmanf.monorepo.core_crypto.data.repositories.CryptoRSAV2RepositoryImpl
 import dagger.Module
@@ -17,18 +13,8 @@ import dagger.Provides
 class CryptoModule {
 
     @Provides
-    fun provideCryptoRSARepository(): CryptoRSARepository {
-        return CryptoRSARepositoryImpl()
-    }
-
-    @Provides
     fun provideCryptoRSAV2Repository(): CryptoRSAV2Repository {
         return CryptoRSAV2RepositoryImpl()
-    }
-
-    @Provides
-    fun provideCryptoAESRepository(): CryptoAESRepository {
-        return CryptoAESRepositoryImpl()
     }
 
     @Provides

@@ -4,7 +4,7 @@ import com.fadlurahmanf.monorepo.app_example.domain.usecases.ExampleNotification
 import com.fadlurahmanf.monorepo.app_example.domain.usecases.ExampleNotificationUseCaseImpl
 import com.fadlurahmanf.monorepo.app_notification.data.repositories.AppNotificationRepository
 import com.fadlurahmanf.monorepo.app_notification.others.di.AppNotificationModule
-import com.fadlurahmanf.monorepo.core_crypto.others.di.CryptoModule
+import com.fadlurahmanf.monorepo.core_crypto.CryptoModule
 import dagger.Module
 import dagger.Provides
 

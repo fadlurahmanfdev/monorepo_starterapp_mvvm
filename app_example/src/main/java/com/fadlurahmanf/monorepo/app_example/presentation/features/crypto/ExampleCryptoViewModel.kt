@@ -1,11 +1,11 @@
 package com.fadlurahmanf.monorepo.app_example.presentation.features.crypto
 
 import com.fadlurahmanf.monorepo.app_shared.activity.BaseViewModel
-import com.fadlurahmanf.monorepo.core_crypto.data.repositories.CryptoRSAV2Repository
+import com.github.fadlurahmanfdev.core_crypto.data.repositories.CryptoRSARepository
 import javax.inject.Inject
 
 class ExampleCryptoViewModel @Inject constructor(
-    private val cryptoRSAV2Repository: CryptoRSAV2Repository
+    private val cryptoRSARepository: CryptoRSARepository
 ) : BaseViewModel() {
-    fun generateKey() = cryptoRSAV2Repository.generateKey()
+    fun generateKey() = cryptoRSARepository.generateKey()
 }

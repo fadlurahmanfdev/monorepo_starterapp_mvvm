@@ -81,4 +81,7 @@ dependencies {
 
     implementation(project(":app_notification"))
     implementation(project(":app_shared"))
+
+    //noinspection UseTomlInstead
+    implementation("com.github.fadlurahmanfdev:core_crypto:0.1.0")
 }

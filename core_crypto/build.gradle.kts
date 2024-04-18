@@ -73,6 +73,6 @@ dependencies {
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 
-    // ed25519
-    implementation(libs.bcprov.jdk15on)
+    //noinspection UseTomlInstead
+    implementation("com.github.fadlurahmanfdev:core_crypto:0.1.0")
 }

@@ -74,9 +74,10 @@ dependencies {
     kapt(libs.dagger.compiler)
 
     implementation(project(":core_crypto"))
-    implementation(project(":core_notification")) {
-        exclude(group = "com.fadlurahmanf.monorepo.core_notification.data")
-        exclude(group = "com.fadlurahmanf.monorepo.core_notification.others")
+    implementation(project(":core_notification"))
+    implementation("com.github.fadlurahmanfdev:library_core_notification:0.0.1") {
+        exclude(group = "com.github.fadlurahmanfdev.core_notification.data")
+        exclude(group = "com.github.fadlurahmanfdev.core_notification.others")
     }
 
     implementation(project(":app_notification"))

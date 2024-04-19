@@ -5,9 +5,9 @@ import android.media.RingtoneManager
 import android.net.Uri
 import androidx.annotation.DrawableRes
 import com.fadlurahmanf.monorepo.app_notification.R
-import com.fadlurahmanf.monorepo.core_notification.data.dto.model.ItemMessagingNotificationModel
-import com.fadlurahmanf.monorepo.core_notification.data.repositories.NotificationRepository
-import com.fadlurahmanf.monorepo.core_notification.data.repositories.NotificationRepositoryImpl
+import com.github.fadlurahmanfdev.core_notification.data.dto.model.ItemMessagingNotificationModel
+import com.github.fadlurahmanfdev.core_notification.data.repositories.NotificationRepository
+import com.github.fadlurahmanfdev.core_notification.data.repositories.NotificationRepositoryImpl
 import javax.inject.Inject
 
 class AppNotificationRepositoryImpl @Inject constructor(

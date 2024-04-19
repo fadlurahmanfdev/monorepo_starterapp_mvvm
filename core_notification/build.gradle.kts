@@ -68,10 +68,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(project(":core_shared"))
-
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 
-    implementation(libs.glide)
+    //noinspection UseTomlInstead
+    implementation("com.github.fadlurahmanfdev:library_core_notification:0.0.1")
 }

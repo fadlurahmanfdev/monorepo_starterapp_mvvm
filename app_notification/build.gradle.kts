@@ -73,6 +73,9 @@ dependencies {
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 
-//    implementation("io.reactivex.rxjava3:rxjava:3.1.8")
-//    implementation("com.github.bumptech.glide:glide:4.16.0")
+    //noinspection UseTomlInstead
+    implementation("com.github.fadlurahmanfdev:library_core_notification:0.0.1") {
+        exclude(group = "com.github.fadlurahmanfdev.core_notification.data")
+        exclude(group = "com.github.fadlurahmanfdev.core_notification.others")
+    }
 }

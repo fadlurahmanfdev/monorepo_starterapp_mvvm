@@ -1,7 +1,7 @@
 package com.fadlurahmanf.monorepo.core_notification
 
-import com.fadlurahmanf.monorepo.core_notification.data.repositories.NotificationRepository
-import com.fadlurahmanf.monorepo.core_notification.data.repositories.NotificationRepositoryImpl
+import com.github.fadlurahmanfdev.core_notification.data.repositories.NotificationRepository
+import com.github.fadlurahmanfdev.core_notification.data.repositories.NotificationRepositoryImpl
 import dagger.Module
 import dagger.Provides
 

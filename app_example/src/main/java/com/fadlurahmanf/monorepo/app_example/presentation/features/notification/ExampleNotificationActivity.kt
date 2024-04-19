@@ -21,9 +21,21 @@ class ExampleNotificationActivity :
     private val features: List<FeatureModel> = listOf<FeatureModel>(
         FeatureModel(
             featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Ask Permission",
+            desc = "Ask Permission Notification",
+            enum = "ASK_PERMISSION"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
             title = "Show Notification",
             desc = "Show Notification",
             enum = "SHOW_NOTIFICATION"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Show Messaging Notification",
+            desc = "Show Notification With Messaging Style",
+            enum = "SHOW_MESSAGING_NOTIFICATION"
         ),
     )
 
@@ -42,8 +54,15 @@ class ExampleNotificationActivity :
 
     override fun onClicked(item: FeatureModel) {
         when (item.enum) {
+            "ASK_PERMISSION" -> {
+                viewModel.askPermission(this)
+            }
+
             "SHOW_NOTIFICATION" -> {
                 viewModel.showNotification(this)
+            }
+            "SHOW_MESSAGING_NOTIFICATION" -> {
+                viewModel.showMessagingNotification(this)
             }
         }
     }

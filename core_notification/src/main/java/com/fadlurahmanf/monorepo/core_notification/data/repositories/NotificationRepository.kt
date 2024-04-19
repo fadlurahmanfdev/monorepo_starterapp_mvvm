@@ -1,23 +1,22 @@
 package com.fadlurahmanf.monorepo.core_notification.data.repositories
 
-import android.app.Activity
 import android.app.PendingIntent
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.annotation.DrawableRes
 import com.fadlurahmanf.monorepo.core_notification.data.dto.model.ItemGroupedNotificationModel
+import com.fadlurahmanf.monorepo.core_notification.data.dto.model.ItemMessagingNotificationModel
 
 interface NotificationRepository {
     /**
-     * Determine whether <em>you</em> have been granted a particular permission.
-     * @return isResult: [PackageManager.PERMISSION_GRANTED] if you have the
-     * permission, or [PackageManager.PERMISSION_DENIED] if not.
+     * Determine whether you have been granted a particular permission.
+     * @return isGranted: return true if permission is [PackageManager.PERMISSION_GRANTED] and return false if
+     * permission is [PackageManager.PERMISSION_DENIED].
      */
     fun askNotificationPermission(
-        activity: Activity,
-        onShouldShowRequestPermissionRationale: () -> Unit,
-        onCompleteCheckPermission: (isGranted: Boolean, result: Int) -> Unit
+        context: Context,
+        onCompleteCheckPermission: (isGranted: Boolean) -> Unit
     )
 
     fun isNotificationChannelExist(context: Context, channelId: String): Boolean
@@ -77,5 +76,14 @@ interface NotificationRepository {
         @DrawableRes smallIcon: Int,
         itemLine: List<String>,
         itemNotifications: List<ItemGroupedNotificationModel>,
+    )
+
+    fun showMessagingNotification(
+        context: Context,
+        id: Int,
+        channelId: String,
+        groupKey: String,
+        items: List<ItemMessagingNotificationModel>,
+        smallIcon: Int,
     )
 }

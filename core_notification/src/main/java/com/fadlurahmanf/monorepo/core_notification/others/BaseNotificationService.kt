@@ -3,9 +3,19 @@ package com.fadlurahmanf.monorepo.core_notification.others
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.Icon
+import android.net.Uri
 import android.os.Build
 import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationCompat.MessagingStyle
+import androidx.core.app.Person
+import androidx.core.graphics.drawable.IconCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 
 abstract class BaseNotificationService {
     private lateinit var notificationManager: NotificationManager

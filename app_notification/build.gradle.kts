@@ -72,4 +72,7 @@ dependencies {
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+
+//    implementation("io.reactivex.rxjava3:rxjava:3.1.8")
+//    implementation("com.github.bumptech.glide:glide:4.16.0")
 }

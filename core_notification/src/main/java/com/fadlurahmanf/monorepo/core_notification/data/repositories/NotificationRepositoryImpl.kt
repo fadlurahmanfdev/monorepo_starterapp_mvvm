@@ -1,7 +1,6 @@
 package com.fadlurahmanf.monorepo.core_notification.data.repositories
 
 import android.Manifest
-import android.app.Activity
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -15,14 +14,16 @@ import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.annotation.DrawableRes
-import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.Person
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.IconCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.fadlurahmanf.monorepo.core_notification.data.dto.model.ItemGroupedNotificationModel
+import com.fadlurahmanf.monorepo.core_notification.data.dto.model.ItemMessagingNotificationModel
 import com.fadlurahmanf.monorepo.core_shared.CoreSharedConstant
 import com.fadlurahmanf.monorepo.core_notification.others.BaseNotificationService
 import javax.inject.Inject
@@ -37,32 +38,22 @@ class NotificationRepositoryImpl @Inject constructor() : BaseNotificationService
     }
 
     override fun askNotificationPermission(
-        activity: Activity,
-        onShouldShowRequestPermissionRationale: () -> Unit,
-        onCompleteCheckPermission: (isGranted: Boolean, result: Int) -> Unit
+        context: Context,
+        onCompleteCheckPermission: (isGranted: Boolean) -> Unit
     ) {
         when {
-            ActivityCompat.shouldShowRequestPermissionRationale(
-                activity, Manifest.permission_group.NOTIFICATIONS
-            ) -> {
-                onShouldShowRequestPermissionRationale()
-            }
-
             Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU -> {
                 val isNotificationEnabled =
-                    NotificationManagerCompat.from(activity).areNotificationsEnabled()
-                onCompleteCheckPermission(
-                    isNotificationEnabled,
-                    if (isNotificationEnabled) PackageManager.PERMISSION_GRANTED else PackageManager.PERMISSION_DENIED
-                )
+                    NotificationManagerCompat.from(context).areNotificationsEnabled()
+                onCompleteCheckPermission(isNotificationEnabled)
             }
 
             else -> {
                 val status = ContextCompat.checkSelfPermission(
-                    activity,
+                    context,
                     Manifest.permission_group.NOTIFICATIONS
                 )
-                onCompleteCheckPermission(status == PackageManager.PERMISSION_GRANTED, status)
+                onCompleteCheckPermission(status == PackageManager.PERMISSION_GRANTED)
             }
         }
     }
@@ -257,5 +248,90 @@ class NotificationRepositoryImpl @Inject constructor() : BaseNotificationService
             }
             notify(id, builder.build())
         }
+    }
+
+    private fun getPersonFromItemMessaging(
+        context: Context,
+        item: ItemMessagingNotificationModel,
+        onComplete: (Person.Builder) -> Unit
+    ) {
+        val personBuilder = Person.Builder().setName(item.messageFrom)
+        if (item.personImageFromNetwork != null) {
+            Glide.with(context)
+                .asBitmap()
+                .load(item.personImageFromNetwork)
+                .into(object : CustomTarget<Bitmap>() {
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?
+                    ) {
+                        personBuilder.setIcon(IconCompat.createWithBitmap(resource))
+                        onComplete(personBuilder)
+                    }
+
+                    override fun onLoadCleared(placeholder: Drawable?) {}
+
+                    override fun onLoadFailed(errorDrawable: Drawable?) {
+                        super.onLoadFailed(errorDrawable)
+                        onComplete(personBuilder)
+                    }
+
+                })
+        }
+    }
+
+    override fun showMessagingNotification(
+        context: Context,
+        id: Int,
+        channelId: String,
+        groupKey: String,
+        items: List<ItemMessagingNotificationModel>,
+        smallIcon: Int,
+    ) {
+        val builder = notificationBuilderV2(
+            context,
+            channelId = channelId,
+            smallIcon = smallIcon,
+        )
+
+        var person1Builder: Person.Builder
+        val totalMessages = items.size
+
+        getPersonFromItemMessaging(
+            context, item = items.first(),
+            onComplete = { personBuilder ->
+                person1Builder = personBuilder
+
+                val messagingStyle = NotificationCompat.MessagingStyle(
+                    person1Builder.build()
+                )
+
+                var counter = 0
+                for (element in items) {
+                    getPersonFromItemMessaging(
+                        context, item = element,
+                        onComplete = { personBuilderStep2 ->
+                            counter++
+                            messagingStyle.addMessage(
+                                element.message,
+                                element.timestamp,
+                                personBuilderStep2.build()
+                            )
+
+                            if (counter >= totalMessages) {
+                                messagingStyle.setGroupConversation(true)
+
+                                builder.setStyle(messagingStyle)
+                                    .setGroup(groupKey)
+                                    .setGroupSummary(true)
+
+                                getNotificationManager(context).notify(id, builder.build())
+                            }
+                        },
+                    )
+                }
+
+            },
+        )
     }
 }

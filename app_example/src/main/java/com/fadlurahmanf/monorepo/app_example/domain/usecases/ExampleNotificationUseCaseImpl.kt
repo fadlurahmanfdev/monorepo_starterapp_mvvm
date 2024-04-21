@@ -40,11 +40,12 @@ class ExampleNotificationUseCaseImpl @Inject constructor(
                     "show incoming call notification permission is granted"
                 )
                 appNotificationRepository.createVOIPChannel(context)
-                CallNotification.startIncomingCallNotification(
+
+                CallNotification.showIncomingCallNotification(
                     context,
                     callNotificationId = 1,
                     callerName = "Taufik Fadlurahman Fajari",
-                    callerNetworkImage = null,
+                    callerNetworkImage = "https://raw.githubusercontent.com/TutorialsBuzz/cdn/main/android.jpg",
                     AppCallNotificationPlayer::class.java
                 )
             } else {

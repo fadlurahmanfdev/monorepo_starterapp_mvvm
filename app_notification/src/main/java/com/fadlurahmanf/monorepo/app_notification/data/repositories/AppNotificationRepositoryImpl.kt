@@ -2,10 +2,12 @@ package com.fadlurahmanf.monorepo.app_notification.data.repositories
 
 import android.app.Notification
 import android.content.Context
+import android.graphics.Bitmap
 import android.media.RingtoneManager
 import android.net.Uri
 import android.util.Log
 import androidx.annotation.DrawableRes
+import androidx.core.graphics.drawable.IconCompat
 import co.id.fadlurahmanf.core_call_notification.data.repositories.CallNotificationRepository
 import co.id.fadlurahmanf.core_call_notification.domain.plugins.CallNotification
 import com.fadlurahmanf.monorepo.app_notification.R
@@ -144,8 +146,8 @@ class AppNotificationRepositoryImpl @Inject constructor(
     override fun getIncomingCallNotification(
         context: Context,
         callerName: String,
-        callerImage: String?,
-    ):Notification {
+        callerImageBitmap: Bitmap?,
+    ): Notification {
         val callNotificationId = 1
         val fullScreenIntent = CallNotification.getFullScreenActivityPendingIntent(
             context,
@@ -167,7 +169,9 @@ class AppNotificationRepositoryImpl @Inject constructor(
             id = callNotificationId,
             channelId = VOIP_CHANNEL_ID,
             callerName = callerName,
-            networkCallerImage = callerImage,
+            callerIcon = if (callerImageBitmap != null) IconCompat.createWithBitmap(
+                callerImageBitmap
+            ) else null,
             smallIcon = BANK_MAS_LOGO_ICON,
             fullScreenIntent = fullScreenIntent,
             acceptCallIndent = acceptIntent,

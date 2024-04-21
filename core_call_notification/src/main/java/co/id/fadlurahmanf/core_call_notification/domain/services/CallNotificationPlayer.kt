@@ -6,6 +6,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.MediaPlayer
@@ -16,6 +18,9 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
 import android.util.Log
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 
 abstract class CallNotificationPlayer : Service() {
     private var mediaPlayer: MediaPlayer? = null
@@ -65,7 +70,7 @@ abstract class CallNotificationPlayer : Service() {
             SHOW_INCOMING_CALL_NOTIFICATION -> {
                 val callNotificationId = intent.getIntExtra(PARAM_CALL_NOTIFICATION_ID, -1)
                 val callerName = intent.getStringExtra(PARAM_CALLER_NAME)
-                val callerImage = intent.getStringExtra(PARAM_CALLER_NAME)
+                val callerImage = intent.getStringExtra(PARAM_CALLER_NETWORK_IMAGE)
                 if (callNotificationId != -1) {
                     onStartForegroundIncomingCallNotification(
                         callNotificationId,
@@ -90,7 +95,7 @@ abstract class CallNotificationPlayer : Service() {
     abstract fun onGetIncomingCallNotification(
         callNotificationId: Int,
         callerName: String,
-        callerImage: String?
+        callerImageBitmap: Bitmap?
     ): Notification
 
     open fun onStartForegroundIncomingCallNotification(
@@ -98,13 +103,54 @@ abstract class CallNotificationPlayer : Service() {
         callerName: String,
         callerImage: String?
     ) {
-        startForeground(
-            callNotificationId, onGetIncomingCallNotification(
-                callNotificationId = callNotificationId,
-                callerName = callerName,
-                callerImage = callerImage,
+        if (callerImage != null) {
+            Glide.with(applicationContext).asBitmap().load(callerImage)
+                .into(
+                    object : CustomTarget<Bitmap>() {
+                        override fun onResourceReady(
+                            resource: Bitmap,
+                            transition: Transition<in Bitmap>?
+                        ) {
+                            Log.d(
+                                CallNotificationPlayer::class.java.simpleName,
+                                "on resource bitmap caller image ready"
+                            )
+                            startForeground(
+                                callNotificationId, onGetIncomingCallNotification(
+                                    callNotificationId = callNotificationId,
+                                    callerName = callerName,
+                                    callerImageBitmap = resource,
+                                )
+                            )
+                        }
+
+                        override fun onLoadCleared(placeholder: Drawable?) {}
+
+                        override fun onLoadFailed(errorDrawable: Drawable?) {
+                            super.onLoadFailed(errorDrawable)
+                            Log.d(
+                                CallNotificationPlayer::class.java.simpleName,
+                                "on resource bitmap caller image failed"
+                            )
+                            startForeground(
+                                callNotificationId, onGetIncomingCallNotification(
+                                    callNotificationId = callNotificationId,
+                                    callerName = callerName,
+                                    callerImageBitmap = null,
+                                )
+                            )
+                        }
+                    },
+                )
+        } else {
+            startForeground(
+                callNotificationId, onGetIncomingCallNotification(
+                    callNotificationId = callNotificationId,
+                    callerName = callerName,
+                    callerImageBitmap = null,
+                )
             )
-        )
+        }
     }
 
     open fun onIncomingNotificationPlayerPlaying() {

@@ -2,6 +2,7 @@ package com.fadlurahmanf.monorepo.app_notification.data.repositories
 
 import android.app.Notification
 import android.content.Context
+import android.graphics.Bitmap
 
 interface AppNotificationRepository {
     fun askPermission(context: Context, onCompleteCheckPermission: (isGranted: Boolean) -> Unit)
@@ -11,6 +12,6 @@ interface AppNotificationRepository {
     fun getIncomingCallNotification(
         context: Context,
         callerName: String,
-        callerImage: String?
+        callerImageBitmap: Bitmap?,
     ): Notification
 }

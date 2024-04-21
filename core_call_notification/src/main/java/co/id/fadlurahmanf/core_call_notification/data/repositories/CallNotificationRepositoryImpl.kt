@@ -8,6 +8,7 @@ import android.widget.RemoteViews
 import androidx.annotation.DrawableRes
 import androidx.core.app.NotificationCompat
 import androidx.core.app.Person
+import androidx.core.graphics.drawable.IconCompat
 import co.id.fadlurahmanf.core_call_notification.R
 import com.github.fadlurahmanfdev.core_notification.data.repositories.NotificationRepository
 import com.github.fadlurahmanfdev.core_notification.others.BaseNotificationService
@@ -37,7 +38,7 @@ class CallNotificationRepositoryImpl(
         id: Int,
         channelId: String,
         callerName: String,
-        networkCallerImage: String?,
+        callerIcon: IconCompat?,
         @DrawableRes smallIcon: Int,
         fullScreenIntent: PendingIntent,
         acceptCallIndent: PendingIntent,
@@ -47,18 +48,22 @@ class CallNotificationRepositoryImpl(
             .setSmallIcon(smallIcon)
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setCategory(NotificationCompat.CATEGORY_CALL)
-//            .setAutoCancel(true)
+            .setAutoCancel(true)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setOngoing(true)
             .setWhen(0)
             .setTimeoutAfter(60000L)
-//            .setOnlyAlertOnce(true)
+            .setOnlyAlertOnce(true)
             .setContentIntent(fullScreenIntent)
             .setFullScreenIntent(fullScreenIntent, true)
 
         val callerBuilder = Person.Builder()
             .setName(callerName)
             .setImportant(true)
+
+        if (callerIcon != null){
+            callerBuilder.setIcon(callerIcon)
+        }
 
         val caller = callerBuilder.build()
 

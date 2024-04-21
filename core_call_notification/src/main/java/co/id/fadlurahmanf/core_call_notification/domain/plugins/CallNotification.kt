@@ -43,19 +43,6 @@ class CallNotification {
             return PendingIntent.getBroadcast(context, 0, intent, getFlagPendingIntent())
         }
 
-        fun acceptIncomingCall(
-            context: Context,
-            callNotificationId: Int,
-            clazz: Class<*>
-        ) {
-            val intent = Intent(context, clazz)
-            intent.apply {
-                action = CallNotificationPlayer.ACCEPT_INCOMING_CALL
-                putExtra(CallNotificationReceiver.PARAM_CALL_NOTIFICATION_ID, callNotificationId)
-            }
-            context.stopService(intent)
-        }
-
         fun declineIncomingCallPendingIntent(
             context: Context,
             callNotificationId: Int,
@@ -67,6 +54,19 @@ class CallNotification {
                 putExtra(CallNotificationReceiver.PARAM_CALL_NOTIFICATION_ID, callNotificationId)
             }
             return PendingIntent.getBroadcast(context, 0, intent, getFlagPendingIntent())
+        }
+
+        fun acceptIncomingCall(
+            context: Context,
+            callNotificationId: Int,
+            clazz: Class<*>
+        ) {
+            val intent = Intent(context, clazz)
+            intent.apply {
+                action = CallNotificationPlayer.ACCEPT_INCOMING_CALL
+                putExtra(CallNotificationReceiver.PARAM_CALL_NOTIFICATION_ID, callNotificationId)
+            }
+            context.stopService(intent)
         }
 
         fun declineIncomingCall(
@@ -85,7 +85,7 @@ class CallNotification {
             context.stopService(intent)
         }
 
-        fun startIncomingCallNotification(
+        fun showIncomingCallNotification(
             context: Context,
             callNotificationId: Int,
             callerName: String,

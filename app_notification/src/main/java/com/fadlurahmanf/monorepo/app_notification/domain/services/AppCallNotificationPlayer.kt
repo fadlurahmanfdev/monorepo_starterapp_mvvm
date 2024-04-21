@@ -2,6 +2,7 @@ package com.fadlurahmanf.monorepo.app_notification.domain.services
 
 
 import android.app.Notification
+import android.graphics.Bitmap
 import co.id.fadlurahmanf.core_call_notification.data.repositories.CallNotificationRepository
 import co.id.fadlurahmanf.core_call_notification.data.repositories.CallNotificationRepositoryImpl
 import co.id.fadlurahmanf.core_call_notification.domain.services.CallNotificationPlayer
@@ -27,12 +28,12 @@ class AppCallNotificationPlayer : CallNotificationPlayer() {
     override fun onGetIncomingCallNotification(
         callNotificationId: Int,
         callerName: String,
-        callerImage: String?
+        callerImageBitmap: Bitmap?
     ): Notification {
         return appNotificationRepository.getIncomingCallNotification(
             applicationContext,
             callerName = callerName,
-            callerImage = callerImage
+            callerImageBitmap = callerImageBitmap
         )
     }
 }

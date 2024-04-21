@@ -4,6 +4,7 @@ import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import androidx.annotation.DrawableRes
+import androidx.core.graphics.drawable.IconCompat
 
 interface CallNotificationRepository {
     fun createVOIPChannel(context: Context)
@@ -13,7 +14,7 @@ interface CallNotificationRepository {
         id: Int,
         channelId: String,
         callerName: String,
-        networkCallerImage: String?,
+        callerIcon: IconCompat?,
         @DrawableRes smallIcon: Int,
         fullScreenIntent: PendingIntent,
         acceptCallIndent: PendingIntent,

@@ -6,9 +6,9 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class NotificationModule {
+class CoreNotificationModule {
     @Provides
-    fun provideNotificationService(): NotificationRepository {
+    fun provideNotificationRepository(): NotificationRepository {
         return NotificationRepositoryImpl()
     }
 }

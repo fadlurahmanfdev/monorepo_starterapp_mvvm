@@ -92,6 +92,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(project(":core_crypto"))
+    implementation(project(":core_call_notification"))
     implementation(project(":core_notification"))
 
     implementation(project(":app_config"))

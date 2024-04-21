@@ -5,5 +5,8 @@ import android.content.Context
 interface ExampleNotificationUseCase {
     fun askPermissionNotification(context: Context, onCompleteCheckPermission: (Boolean) -> Unit)
     fun showSimpleNotification(context: Context)
-    fun showMessagingNotification(context: Context, id: Int)
+    fun showMessagingNotification(context: Context)
+    fun showIncomingCallNotification(context: Context)
+    fun startIncomingCallPlayer(context: Context)
+    fun stopIncomingCallPlayer(context: Context)
 }

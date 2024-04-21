@@ -19,14 +19,26 @@ class ExampleNotificationViewModel @Inject constructor(
                     ExampleNotificationViewModel::class.java.simpleName,
                     "IS NOTIFICATION PERMISSION GRANTED: $isGranted"
                 )
-            })
+            }
+        )
     }
 
     fun showNotification(context: Context) =
         exampleNotificationUseCase.showSimpleNotification(context)
 
     fun showMessagingNotification(context: Context) {
-        val randomInt = Random.nextInt(999)
-        exampleNotificationUseCase.showMessagingNotification(context, randomInt)
+        exampleNotificationUseCase.showMessagingNotification(context)
+    }
+
+    fun showIncomingCallNotification(context: Context) {
+        exampleNotificationUseCase.showIncomingCallNotification(context)
+    }
+
+    fun startIncomingCallPlayer(context: Context) {
+        exampleNotificationUseCase.startIncomingCallPlayer(context)
+    }
+
+    fun stopIncomingCallPlayer(context: Context) {
+        exampleNotificationUseCase.stopIncomingCallPlayer(context)
     }
 }

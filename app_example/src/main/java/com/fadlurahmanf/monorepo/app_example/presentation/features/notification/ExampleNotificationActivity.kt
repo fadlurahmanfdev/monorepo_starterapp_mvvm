@@ -37,6 +37,24 @@ class ExampleNotificationActivity :
             desc = "Show Notification With Messaging Style",
             enum = "SHOW_MESSAGING_NOTIFICATION"
         ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Show Incoming Call Notification",
+            desc = "Show Notification With Call Style",
+            enum = "SHOW_INCOMING_CALL_NOTIFICATION"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Start Incoming Call Player",
+            desc = "Start Incoming Call Player",
+            enum = "START_INCOMING_CALL_PLAYER"
+        ),
+        FeatureModel(
+            featureIcon = R.drawable.baseline_developer_mode_24,
+            title = "Stop Incoming Call Player",
+            desc = "Stop Incoming Call Player",
+            enum = "STOP_INCOMING_CALL_PLAYER"
+        ),
     )
 
     private lateinit var adapter: ListExampleAdapter
@@ -61,8 +79,21 @@ class ExampleNotificationActivity :
             "SHOW_NOTIFICATION" -> {
                 viewModel.showNotification(this)
             }
+
             "SHOW_MESSAGING_NOTIFICATION" -> {
                 viewModel.showMessagingNotification(this)
+            }
+
+            "SHOW_INCOMING_CALL_NOTIFICATION" -> {
+                viewModel.showIncomingCallNotification(this)
+            }
+
+            "START_INCOMING_CALL_PLAYER" -> {
+                viewModel.startIncomingCallPlayer(this)
+            }
+
+            "STOP_INCOMING_CALL_PLAYER" -> {
+                viewModel.stopIncomingCallPlayer(this)
             }
         }
     }

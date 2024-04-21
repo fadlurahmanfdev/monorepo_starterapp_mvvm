@@ -1,5 +1,8 @@
 import java.net.URI
 
+include(":core_call_notification")
+
+
 pluginManagement {
     repositories {
         google {

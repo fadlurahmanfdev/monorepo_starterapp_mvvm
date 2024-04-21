@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.fadlurahmanf.monorepo.app_notification"
+    namespace = "co.id.fadlurahmanf.core_call_notification"
     compileSdk = 34
 
     defaultConfig {
@@ -32,31 +32,6 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
-    buildFeatures {
-        buildConfig = true
-        viewBinding = true
-    }
-
-    flavorDimensions.add("environment")
-
-    productFlavors {
-        create("fake") {
-            dimension = "environment"
-        }
-
-        create("dev") {
-            dimension = "environment"
-        }
-
-        create("staging") {
-            dimension = "environment"
-        }
-
-        create("prod") {
-            dimension = "environment"
-        }
-    }
 }
 
 dependencies {
@@ -64,19 +39,14 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(project(":core_call_notification"))
-    implementation(project(":core_notification"))
+    implementation(libs.glide)
+
     //noinspection UseTomlInstead
-    implementation("com.github.fadlurahmanfdev:library_core_notification:0.0.1") {
-        exclude(group = "com.github.fadlurahmanfdev.core_notification.data")
-        exclude(group = "com.github.fadlurahmanfdev.core_notification.others")
-    }
+    implementation("com.github.fadlurahmanfdev:library_core_notification:0.0.1")
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)

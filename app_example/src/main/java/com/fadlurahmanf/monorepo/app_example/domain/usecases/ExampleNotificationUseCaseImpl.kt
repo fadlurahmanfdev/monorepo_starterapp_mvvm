@@ -2,6 +2,8 @@ package com.fadlurahmanf.monorepo.app_example.domain.usecases
 
 import android.content.Context
 import android.util.Log
+import co.id.fadlurahmanf.core_call_notification.domain.plugins.CallNotification
+import com.fadlurahmanf.monorepo.app_notification.domain.services.AppCallNotificationPlayer
 import com.fadlurahmanf.monorepo.app_notification.data.repositories.AppNotificationRepository
 import javax.inject.Inject
 
@@ -19,35 +21,43 @@ class ExampleNotificationUseCaseImpl @Inject constructor(
         )
     }
 
-    override fun showSimpleNotification(context: Context) {
+    override fun showSimpleNotification(context: Context) =
+        appNotificationRepository.showNotification(
+            context,
+            id = 1,
+            title = "Simple Notification",
+            message = "This is Example of Simple Notification"
+        )
+
+    override fun showMessagingNotification(context: Context) =
+        appNotificationRepository.showMessagingNotification(context, 2)
+
+    override fun showIncomingCallNotification(context: Context) {
         appNotificationRepository.askPermission(context, onCompleteCheckPermission = { isGranted ->
             if (isGranted) {
-                appNotificationRepository.showNotification(
+                Log.d(
+                    ExampleNotificationUseCaseImpl::class.java.simpleName,
+                    "show incoming call notification permission is granted"
+                )
+                appNotificationRepository.createVOIPChannel(context)
+                CallNotification.startIncomingCallNotification(
                     context,
-                    id = 1,
-                    title = "Simple Notification",
-                    message = "This is Example of Simple Notification"
+                    callNotificationId = 1,
+                    callerName = "Taufik Fadlurahman Fajari",
+                    callerNetworkImage = null,
+                    AppCallNotificationPlayer::class.java
                 )
             } else {
                 Log.d(
                     ExampleNotificationUseCaseImpl::class.java.simpleName,
-                    "permission is not granted"
+                    "unable to showIncomingCallNotification because permission is not granted"
                 )
             }
         })
     }
 
-    override fun showMessagingNotification(context: Context, id: Int) {
-        appNotificationRepository.askPermission(context, onCompleteCheckPermission = { isGranted ->
-            if (isGranted) {
-                appNotificationRepository.showMessagingNotification(context, id)
-            } else {
-                Log.d(
-                    ExampleNotificationUseCaseImpl::class.java.simpleName,
-                    "permission is not granted"
-                )
-            }
-        })
-    }
+    override fun startIncomingCallPlayer(context: Context) {}
+
+    override fun stopIncomingCallPlayer(context: Context) {}
 
 }

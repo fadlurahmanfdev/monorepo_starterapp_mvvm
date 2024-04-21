@@ -74,10 +74,12 @@ dependencies {
     kapt(libs.dagger.compiler)
 
     implementation(project(":core_crypto"))
+    implementation(project(":core_call_notification"))
     implementation(project(":core_notification"))
     implementation("com.github.fadlurahmanfdev:library_core_notification:0.0.1") {
         exclude(group = "com.github.fadlurahmanfdev.core_notification.data")
         exclude(group = "com.github.fadlurahmanfdev.core_notification.others")
+        isTransitive = true
     }
 
     implementation(project(":app_notification"))

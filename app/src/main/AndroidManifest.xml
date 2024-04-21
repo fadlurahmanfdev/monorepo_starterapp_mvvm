@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name="com.fadlurahmanf.monorepo.app_config.app.BaseApp"
@@ -24,6 +25,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name="com.fadlurahmanf.monorepo.app_notification.domain.services.AppCallNotificationPlayer"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.github.fadlurahmanfdev.SHOW_INCOMING_CALL_NOTIFICATION" />
+                <action android:name="com.github.fadlurahmanfdev.ACCEPT_INCOMING_CALL" />
+                <action android:name="com.github.fadlurahmanfdev.DECLINE_INCOMING_CALL" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.fadlurahmanf.monorepo.app_notification.domain.receiver.AppCallNotificationReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.github.fadlurahmanfdev.ACCEPT_INCOMING_CALL" />
+                <action android:name="com.github.fadlurahmanfdev.DECLINE_INCOMING_CALL" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

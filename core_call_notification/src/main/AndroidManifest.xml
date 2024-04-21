@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application>
+        <service
+            android:name=".domain.services.CallNotificationPlayer"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.github.fadlurahmanfdev.SHOW_INCOMING_CALL_NOTIFICATION" />
+                <action android:name="com.github.fadlurahmanfdev.ACCEPT_INCOMING_CALL" />
+                <action android:name="com.github.fadlurahmanfdev.DECLINE_INCOMING_CALL" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".domain.receivers.CallNotificationReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.github.fadlurahmanfdev.ACCEPT_INCOMING_CALL" />
+                <action android:name="com.github.fadlurahmanfdev.DECLINE_INCOMING_CALL" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
